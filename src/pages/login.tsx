@@ -1,17 +1,48 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 import "rbx/index.css";
-import { Container, Button } from "rbx";
+import { Container, Button, Field, Label, Control, Input } from "rbx";
+import { useNavigate } from "react-router-dom";
 
-interface StatsProps {
-    currentDay: number;
+const PASSWORD = "developer";
+
+function onClick(attempt: string) {
+    if(attempt == PASSWORD) {
+
+    }
 }
 
+
 export default function Login(): ReactElement {
+    const [inputPass, setInputPass] = useState<string>("");
+
+    const navigate = useNavigate();
+  
+    const onContinue = () => {
+        if(inputPass == PASSWORD) {
+            navigate("/log-session");
+        } else {
+            navigate("/login");
+        }
+    }
+
     return(
         <Container>
             <h1>
                 Login
             </h1>
+
+            <Field>
+                <Label>Password</Label>
+                <Control>
+                    <Input type="password" placeholder="password" 
+                    onChange ={(e: any) => setInputPass(e.currentTarget.value)}/>
+                </Control>
+            </Field>
+            <Field>
+                <Control>
+                    <Button color="success" onClick={onContinue}>Continue</Button>
+                </Control>
+            </Field>
         </Container>
     );
 }
