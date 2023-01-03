@@ -5,12 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 const PASSWORD = "developer";
 
-function onClick(attempt: string) {
-    if(attempt == PASSWORD) {
-
-    }
-}
-
 
 export default function Login(): ReactElement {
     const [inputPass, setInputPass] = useState<string>("");
@@ -22,6 +16,7 @@ export default function Login(): ReactElement {
             navigate("/log-session");
         } else {
             navigate("/login");
+            setInputPass("");
         }
     }
 
